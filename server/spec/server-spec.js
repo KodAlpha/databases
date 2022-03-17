@@ -8,20 +8,23 @@ const API_URL = 'http://127.0.0.1:3000/classes';
 
 describe('Persistent Node Chat Server', () => {
   const dbConnection = mysql.createConnection({
-    user: 'student',
-    password: 'student',
+    user: 'root',
+    password: 'SexyBeast159!',
     database: 'chat',
   });
 
   beforeAll((done) => {
     dbConnection.connect();
 
-       const tablename = ''; // TODO: fill this out
-
+    const messages = 'messages'; // TODO: fill this out
+    const users = 'users';
+    const rooms = 'rooms';
     /* Empty the db table before all tests so that multiple tests
      * (or repeated runs of the tests)  will not fail when they should be passing
      * or vice versa */
-    dbConnection.query(`truncate ${tablename}`, done);
+    dbConnection.query(`truncate ${messages}`, done);
+    dbConnection.query(`truncate ${users}`, done);
+    dbConnection.query(`truncate ${rooms}`, done);
   }, 6500);
 
   afterAll(() => {
